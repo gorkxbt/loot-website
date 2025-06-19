@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Notifications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1259px;
+            min-height: 2636px;
+            background: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            color: #1a1a1a;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            margin: 50px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-radius: 44px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* iOS Status Bar */
+        .status-bar {
+            height: 60px;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            font-size: 19px;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-radius: 20px 20px 0 0;
+            margin: -40px -40px 0 -40px;
+        }
+
+        .signal-bars {
+            display: flex;
+            gap: 2px;
+            align-items: end;
+        }
+
+        .bar {
+            width: 3px;
+            background: #1a1a1a;
+            border-radius: 1px;
+        }
+
+        .bar-1 { height: 4px; }
+        .bar-2 { height: 7px; }
+        .bar-3 { height: 10px; }
+        .bar-4 { height: 13px; }
+
+        .wifi-icon {
+            width: 15px;
+            height: 11px;
+            border: 2px solid #1a1a1a;
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .wifi-icon::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 2px;
+            width: 7px;
+            height: 5px;
+            border: 2px solid #1a1a1a;
+            border-bottom: none;
+            border-radius: 7px 7px 0 0;
+        }
+
+        .wifi-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 4px;
+            width: 3px;
+            height: 3px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+
+        .battery {
+            width: 24px;
+            height: 12px;
+            border: 1px solid #1a1a1a;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .battery::before {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 3px;
+            width: 2px;
+            height: 6px;
+            background: #1a1a1a;
+            border-radius: 0 1px 1px 0;
+        }
+
+        .battery::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 18px;
+            height: 8px;
+            background: #34c759;
+            border-radius: 1px;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* App Header */
+        .header {
+            height: 140px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0 -40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            width: 46px;
+            height: 46px;
+            border-radius: 23px;
+            background: rgba(26, 26, 26, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-title {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #b2e24f 0%, #8f7cd2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mark-all-read {
+            background: linear-gradient(135deg, #8f7cd2 0%, #6b5b94 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 20px rgba(143, 124, 210, 0.3);
+        }
+
+        .notifications-list {
+            padding: 20px;
+        }
+
+        .notification-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .notification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .notification-item.unread {
+            border-left: 4px solid #b2e24f;
+            background: linear-gradient(135deg, rgba(178, 226, 79, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
+        }
+
+        .notification-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .notification-title {
+            font-weight: 700;
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .notification-time {
+            color: #999;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .notification-message {
+            color: #666;
+            line-height: 1.6;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .notification-reward {
+            display: inline-block;
+            background: linear-gradient(135deg, #b2e24f 0%, #8fa83d 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(178, 226, 79, 0.3);
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #b2e24f 0%, #8fa83d 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(178, 226, 79, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: rgba(143, 124, 210, 0.15);
+            color: #8f7cd2;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .unread-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: #b2e24f;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(178, 226, 79, 0.4);
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 20px 20px;
+            font-weight: 700;
+            color: #999;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(26, 26, 26, 0.1);
+        }
+
+        .section-divider::before {
+            margin-right: 16px;
+        }
+
+        .section-divider::after {
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">
+            <span>9:41</span>
+            <div class="signal-bars">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+                <div class="bar bar-4"></div>
+            </div>
+            <div class="wifi-icon"></div>
+        </div>
+        <div class="status-right">
+            <span>65%</span>
+            <div class="battery"></div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header-left">
+            <div class="back-button">←</div>
+            <div class="header-title">Notifications</div>
+        </div>
+        <div class="mark-all-read">Mark All Read</div>
+    </div>
+
+    <div class="notifications-list">
+        <div class="notification-item unread">
+            <div class="unread-indicator"></div>
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(178, 226, 79, 0.15) 0%, rgba(143, 196, 61, 0.15) 100%); color: #8fa83d;">🎉</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Congratulations!</div>
+                        <div class="notification-time">5 minutes ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    Your review for Nike Air Max 270 earned you 75 $LOOT tokens! Keep sharing your honest opinions.
+                </div>
+                <span class="notification-reward">+75 $LOOT</span>
+            </div>
+        </div>
+
+        <div class="notification-item unread">
+            <div class="unread-indicator"></div>
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(238, 90, 36, 0.15) 100%); color: #ff6b6b;">🔥</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Flash Sale Alert!</div>
+                        <div class="notification-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    50% off Adidas Ultra Boost - Limited time only! Perfect match for your running style.
+                </div>
+                <div class="notification-actions">
+                    <div class="action-btn primary">Shop Now</div>
+                    <div class="action-btn secondary">Save for Later</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification-item">
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(143, 124, 210, 0.15) 0%, rgba(107, 91, 148, 0.15) 100%); color: #8f7cd2;">👥</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Friend Joined!</div>
+                        <div class="notification-time">1 day ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    Emma Miller joined LootAI using your referral link. You both earned 100 $LOOT!
+                </div>
+                <span class="notification-reward">+100 $LOOT</span>
+            </div>
+        </div>
+
+        <div class="notification-item">
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); color: #ffc107;">⭐</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Tier Upgrade!</div>
+                        <div class="notification-time">2 days ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    You've reached Gold tier! Enjoy 4% cashback on all purchases and exclusive member perks.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider">Earlier This Week</div>
+
+        <div class="notification-item">
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(52, 199, 89, 0.15) 0%, rgba(48, 176, 199, 0.15) 100%); color: #34c759;">📦</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Order Delivered</div>
+                        <div class="notification-time">3 days ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    Your order #LA-2024-1156 has been delivered. Rate your experience to earn $LOOT!
+                </div>
+                <div class="notification-actions">
+                    <div class="action-btn primary">Write Review</div>
+                    <div class="action-btn secondary">View Order</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification-item">
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(175, 82, 222, 0.15) 0%, rgba(126, 87, 194, 0.15) 100%); color: #af52de;">🤖</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">AI Recommendation</div>
+                        <div class="notification-time">4 days ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    Based on your recent purchases, we found 3 items you might love. Check them out!
+                </div>
+                <div class="notification-actions">
+                    <div class="action-btn primary">View Picks</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification-item">
+            <div class="notification-icon" style="background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(88, 86, 214, 0.15) 100%); color: #007aff;">🎯</div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <div>
+                        <div class="notification-title">Wishlist Alert</div>
+                        <div class="notification-time">5 days ago</div>
+                    </div>
+                </div>
+                <div class="notification-message">
+                    The Converse Chuck 70 you saved is now 30% off! Limited stock available.
+                </div>
+                <div class="notification-actions">
+                    <div class="action-btn primary">Buy Now</div>
+                    <div class="action-btn secondary">Remove</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

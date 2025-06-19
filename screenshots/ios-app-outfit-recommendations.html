@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Outfit Recommendations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { width: 1259px; min-height: 2636px; background: #ffffff; font-family: 'Quicksand', sans-serif; color: #1a1a1a; overflow-y: auto; overflow-x: hidden; position: relative; margin: 50px auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border-radius: 44px; padding: 40px; box-sizing: border-box; }
+        .status-bar { height: 60px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; font-size: 19px; font-weight: 600; color: #1a1a1a; border-radius: 20px 20px 0 0; margin: -40px -40px 0 -40px; }
+        .header { padding: 20px; background: linear-gradient(135deg, #8f7cd2 0%, #6b5b94 100%); margin: 0 -40px; color: white; text-align: center; }
+        .header-title { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
+        .header-subtitle { font-size: 16px; opacity: 0.9; }
+        .ai-message { background: rgba(143, 124, 210, 0.1); border-radius: 20px; padding: 20px; margin: 20px; }
+        .ai-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .ai-icon { width: 40px; height: 40px; background: #8f7cd2; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-right: 15px; color: white; font-size: 20px; }
+        .ai-title { font-weight: 600; color: #8f7cd2; }
+        .outfit-card { background: white; border-radius: 25px; margin: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .outfit-header { padding: 25px 25px 15px; }
+        .outfit-title { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
+        .outfit-subtitle { color: #666; margin-bottom: 15px; }
+        .outfit-tags { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tag { background: rgba(178, 226, 79, 0.1); color: #8fa83d; padding: 6px 12px; border-radius: 15px; font-size: 14px; font-weight: 600; }
+        .outfit-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 25px 25px; }
+        .outfit-item { text-align: center; }
+        .item-image { width: 100%; height: 150px; border-radius: 15px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; }
+        .item-name { font-weight: 600; margin-bottom: 3px; font-size: 14px; }
+        .item-price { color: #b2e24f; font-weight: 700; }
+        .outfit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px 25px; background: #f8f9fa; }
+        .action-btn { padding: 15px; border-radius: 15px; text-align: center; font-weight: 600; }
+        .save-btn { background: rgba(143, 124, 210, 0.1); color: #8f7cd2; }
+        .shop-btn { background: #b2e24f; color: white; }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">94%</div>
+    </div>
+
+    <div class="header">
+        <h1 class="header-title">Outfit Recommendations</h1>
+        <p class="header-subtitle">AI-curated looks just for you</p>
+    </div>
+
+    <div class="ai-message">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <div class="ai-title">Personal Stylist AI</div>
+        </div>
+        <p>Based on your recent purchases and style preferences, I've created 3 perfect outfits for different occasions!</p>
+    </div>
+
+    <div class="outfit-card">
+        <div class="outfit-header">
+            <h2 class="outfit-title">Casual Weekend</h2>
+            <p class="outfit-subtitle">Perfect for coffee dates and shopping</p>
+            <div class="outfit-tags">
+                <span class="tag">Comfortable</span>
+                <span class="tag">Stylish</span>
+                <span class="tag">Versatile</span>
+            </div>
+        </div>
+        <div class="outfit-items">
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">👕</div>
+                <div class="item-name">Oversized Tee</div>
+                <div class="item-price">$29.99</div>
+            </div>
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #4834d4, #686de0);">👖</div>
+                <div class="item-name">Mom Jeans</div>
+                <div class="item-price">$79.99</div>
+            </div>
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #00d2d3, #54a0ff);">👟</div>
+                <div class="item-name">White Sneakers</div>
+                <div class="item-price">$120.00</div>
+            </div>
+        </div>
+        <div class="outfit-actions">
+            <div class="action-btn save-btn">Save Outfit</div>
+            <div class="action-btn shop-btn">Shop Look</div>
+        </div>
+    </div>
+
+    <div class="outfit-card">
+        <div class="outfit-header">
+            <h2 class="outfit-title">Work Ready</h2>
+            <p class="outfit-subtitle">Professional yet trendy office look</p>
+            <div class="outfit-tags">
+                <span class="tag">Professional</span>
+                <span class="tag">Modern</span>
+            </div>
+        </div>
+        <div class="outfit-items">
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #2c2c54, #40407a);">👔</div>
+                <div class="item-name">Blazer</div>
+                <div class="item-price">$149.99</div>
+            </div>
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #f1c40f, #f39c12);">👗</div>
+                <div class="item-name">Midi Dress</div>
+                <div class="item-price">$89.99</div>
+            </div>
+            <div class="outfit-item">
+                <div class="item-image" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);">👠</div>
+                <div class="item-name">Block Heels</div>
+                <div class="item-price">$95.00</div>
+            </div>
+        </div>
+        <div class="outfit-actions">
+            <div class="action-btn save-btn">Save Outfit</div>
+            <div class="action-btn shop-btn">Shop Look</div>
+        </div>
+    </div>
+</body>
+</html> 

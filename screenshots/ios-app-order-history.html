@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Order History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { width: 1259px; min-height: 2636px; background: #ffffff; font-family: 'Quicksand', sans-serif; color: #1a1a1a; overflow-y: auto; overflow-x: hidden; position: relative; margin: 50px auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border-radius: 44px; padding: 40px; box-sizing: border-box; }
+        .status-bar { height: 60px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; font-size: 19px; font-weight: 600; color: #1a1a1a; border-radius: 20px 20px 0 0; margin: -40px -40px 0 -40px; }
+        .header { padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 0 -40px; display: flex; align-items: center; }
+        .back-button { font-size: 24px; font-weight: bold; margin-right: 20px; }
+        .header-title { font-size: 24px; font-weight: 700; }
+        .order-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; }
+        .stat-card { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .stat-value { font-size: 24px; font-weight: 700; color: #8f7cd2; margin-bottom: 5px; }
+        .stat-label { font-size: 14px; color: #666; }
+        .order-item { background: white; border-radius: 20px; margin: 15px 20px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .order-number { font-weight: 700; font-size: 16px; }
+        .order-status { padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .status-delivered { background: rgba(52, 199, 89, 0.1); color: #34c759; }
+        .status-shipping { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+        .status-processing { background: rgba(143, 124, 210, 0.1); color: #8f7cd2; }
+        .order-date { color: #666; font-size: 14px; margin-bottom: 15px; }
+        .order-items { display: flex; gap: 15px; margin-bottom: 15px; }
+        .item-thumbnail { width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; }
+        .order-summary { display: flex; justify-content: space-between; align-items: center; }
+        .order-total { font-weight: 700; font-size: 18px; color: #b2e24f; }
+        .loot-earned { display: flex; align-items: center; gap: 5px; color: #8fa83d; font-weight: 600; font-size: 14px; }
+        .order-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .action-btn { padding: 10px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 14px; }
+        .track-btn { background: rgba(143, 124, 210, 0.1); color: #8f7cd2; }
+        .reorder-btn { background: rgba(178, 226, 79, 0.1); color: #8fa83d; }
+        .review-btn { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">67%</div>
+    </div>
+
+    <div class="header">
+        <div class="back-button">←</div>
+        <div class="header-title">Order History</div>
+    </div>
+
+    <div class="order-stats">
+        <div class="stat-card">
+            <div class="stat-value">23</div>
+            <div class="stat-label">Total Orders</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">$2,340</div>
+            <div class="stat-label">Total Spent</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">458</div>
+            <div class="stat-label">$LOOT Earned</div>
+        </div>
+    </div>
+
+    <div class="order-item">
+        <div class="order-header">
+            <span class="order-number">Order #LA-2024-001</span>
+            <span class="order-status status-delivered">Delivered</span>
+        </div>
+        <div class="order-date">Delivered on March 15, 2024</div>
+        <div class="order-items">
+            <div class="item-thumbnail" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">👟</div>
+            <div class="item-thumbnail" style="background: linear-gradient(45deg, #4834d4, #686de0);">👕</div>
+            <div style="display: flex; align-items: center; color: #666; font-size: 14px;">+1 more</div>
+        </div>
+        <div class="order-summary">
+            <div class="order-total">$284.50</div>
+            <div class="loot-earned">💰 +14 $LOOT earned</div>
+        </div>
+        <div class="order-actions">
+            <div class="action-btn review-btn">Write Reviews</div>
+            <div class="action-btn reorder-btn">Reorder</div>
+        </div>
+    </div>
+
+    <div class="order-item">
+        <div class="order-header">
+            <span class="order-number">Order #LA-2024-002</span>
+            <span class="order-status status-shipping">Shipping</span>
+        </div>
+        <div class="order-date">Ordered on March 18, 2024</div>
+        <div class="order-items">
+            <div class="item-thumbnail" style="background: linear-gradient(45deg, #00d2d3, #54a0ff);">🕶️</div>
+            <div class="item-thumbnail" style="background: linear-gradient(45deg, #ffa726, #ff7043);">👖</div>
+        </div>
+        <div class="order-summary">
+            <div class="order-total">$243.99</div>
+            <div class="loot-earned">💰 Will earn +12 $LOOT</div>
+        </div>
+        <div class="order-actions">
+            <div class="action-btn track-btn">Track Package</div>
+            <div class="action-btn reorder-btn">Reorder</div>
+        </div>
+    </div>
+
+    <div class="order-item">
+        <div class="order-header">
+            <span class="order-number">Order #LA-2024-003</span>
+            <span class="order-status status-processing">Processing</span>
+        </div>
+        <div class="order-date">Ordered on March 20, 2024</div>
+        <div class="order-items">
+            <div class="item-thumbnail" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);">👠</div>
+        </div>
+        <div class="order-summary">
+            <div class="order-total">$149.00</div>
+            <div class="loot-earned">💰 Will earn +7 $LOOT</div>
+        </div>
+        <div class="order-actions">
+            <div class="action-btn track-btn">Track Order</div>
+            <div class="action-btn reorder-btn">Reorder</div>
+        </div>
+    </div>
+</body>
+</html> 

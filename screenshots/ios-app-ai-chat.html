@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - AI Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { width: 1259px; min-height: 2636px; background: #ffffff; font-family: 'Quicksand', sans-serif; color: #1a1a1a; overflow-y: auto; overflow-x: hidden; position: relative; margin: 50px auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border-radius: 44px; padding: 40px; box-sizing: border-box; }
+        .status-bar { height: 60px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; font-size: 19px; font-weight: 600; color: #1a1a1a; border-radius: 20px 20px 0 0; margin: -40px -40px 0 -40px; }
+        .header { padding: 20px; background: linear-gradient(135deg, #8f7cd2 0%, #6b5b94 100%); margin: 0 -40px; display: flex; align-items: center; color: white; }
+        .back-button { font-size: 24px; font-weight: bold; margin-right: 20px; }
+        .ai-avatar { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 25px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 24px; }
+        .ai-info h3 { font-weight: 700; margin-bottom: 3px; }
+        .ai-info p { opacity: 0.9; font-size: 14px; }
+        .chat-container { padding: 20px; min-height: 1200px; }
+        .message { margin-bottom: 20px; display: flex; align-items: flex-start; }
+        .message.user { flex-direction: row-reverse; }
+        .message-avatar { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 10px; font-size: 20px; }
+        .ai-avatar-small { background: #8f7cd2; color: white; }
+        .user-avatar-small { background: #b2e24f; color: white; }
+        .message-content { max-width: 280px; padding: 15px 20px; border-radius: 20px; }
+        .ai-message { background: rgba(143, 124, 210, 0.1); color: #1a1a1a; border-bottom-left-radius: 8px; }
+        .user-message { background: #b2e24f; color: white; border-bottom-right-radius: 8px; }
+        .message-time { font-size: 12px; color: #999; text-align: center; margin: 10px 0; }
+        .product-suggestion { background: white; border-radius: 15px; padding: 15px; margin: 10px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.1); display: flex; align-items: center; }
+        .suggestion-image { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; }
+        .suggestion-details h4 { font-weight: 600; margin-bottom: 5px; }
+        .suggestion-details p { color: #666; font-size: 14px; margin-bottom: 5px; }
+        .suggestion-price { color: #b2e24f; font-weight: 700; }
+        .quick-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
+        .quick-action { background: rgba(143, 124, 210, 0.1); color: #8f7cd2; padding: 12px; border-radius: 15px; text-align: center; font-weight: 600; font-size: 14px; }
+        .input-area { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); width: 748px; background: white; padding: 15px; border-radius: 25px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; }
+        .message-input { flex: 1; border: none; outline: none; font-size: 16px; font-family: inherit; }
+        .send-button { width: 40px; height: 40px; background: #b2e24f; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">89%</div>
+    </div>
+
+    <div class="header">
+        <div class="back-button">←</div>
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-info">
+            <h3>LootAI Assistant</h3>
+            <p>Your personal shopping companion</p>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <div class="message">
+            <div class="message-avatar ai-avatar-small">🤖</div>
+            <div class="message-content ai-message">
+                Hi! I'm your personal shopping assistant. I can help you find products, compare prices, check reviews, and even suggest complete outfits based on your style preferences. What are you looking for today?
+            </div>
+        </div>
+
+        <div class="message-time">2 minutes ago</div>
+
+        <div class="message user">
+            <div class="message-avatar user-avatar-small">👤</div>
+            <div class="message-content user-message">
+                I need some new sneakers for everyday wear. Something comfortable but stylish
+            </div>
+        </div>
+
+        <div class="message">
+            <div class="message-avatar ai-avatar-small">🤖</div>
+            <div class="message-content ai-message">
+                Perfect! Based on your previous purchases and style preferences, I found some great options for everyday sneakers. Here are my top recommendations:
+                
+                <div class="product-suggestion">
+                    <div class="suggestion-image" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">👟</div>
+                    <div class="suggestion-details">
+                        <h4>Nike Air Max 270</h4>
+                        <p>Great for all-day comfort</p>
+                        <div class="suggestion-price">$150.00</div>
+                    </div>
+                </div>
+
+                <div class="product-suggestion">
+                    <div class="suggestion-image" style="background: linear-gradient(45deg, #4834d4, #686de0);">👟</div>
+                    <div class="suggestion-details">
+                        <h4>Adidas Ultraboost 22</h4>
+                        <p>Perfect for walking & running</p>
+                        <div class="suggestion-price">$190.00</div>
+                    </div>
+                </div>
+
+                Would you like to see more details about any of these, or should I find options in a different price range?
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <div class="quick-action">Show Size Guide</div>
+            <div class="quick-action">Compare Reviews</div>
+            <div class="quick-action">Find Similar Styles</div>
+            <div class="quick-action">Check Availability</div>
+        </div>
+
+        <div class="message user">
+            <div class="message-avatar user-avatar-small">👤</div>
+            <div class="message-content user-message">
+                The Nike Air Max looks good! Can you show me what outfits would work with them?
+            </div>
+        </div>
+
+        <div class="message">
+            <div class="message-avatar ai-avatar-small">🤖</div>
+            <div class="message-content ai-message">
+                Great choice! The Nike Air Max 270 is super versatile. Let me create some outfit combinations for you...
+                
+                ✨ Generating outfit suggestions based on your style profile and the Air Max 270...
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" class="message-input" placeholder="Ask me anything about products, styles, or shopping...">
+        <div class="send-button">➤</div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { width: 1259px; min-height: 2636px; background: #ffffff; font-family: 'Quicksand', sans-serif; color: #1a1a1a; overflow-y: auto; overflow-x: hidden; position: relative; margin: 50px auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border-radius: 44px; padding: 40px; box-sizing: border-box; }
+        .status-bar { height: 60px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; font-size: 19px; font-weight: 600; color: #1a1a1a; border-radius: 20px 20px 0 0; margin: -40px -40px 0 -40px; }
+        .header { padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 0 -40px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; }
+        .back-button { font-size: 24px; font-weight: bold; margin-right: 20px; }
+        .header-title { font-size: 24px; font-weight: 700; }
+        .cart-count { background: #ff6b6b; color: white; padding: 5px 10px; border-radius: 12px; font-size: 14px; font-weight: 600; }
+        .cart-item { background: white; border-radius: 20px; margin: 15px 20px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: flex; align-items: center; position: relative; }
+        .item-image { width: 100px; height: 100px; border-radius: 15px; margin-right: 20px; display: flex; align-items: center; justify-content: center; font-size: 50px; color: white; }
+        .item-details { flex: 1; }
+        .item-title { font-size: 18px; font-weight: 700; margin-bottom: 5px; }
+        .item-options { color: #666; margin-bottom: 10px; font-size: 14px; }
+        .item-price { font-size: 20px; font-weight: 700; color: #b2e24f; }
+        .quantity-controls { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+        .qty-btn { width: 36px; height: 36px; border-radius: 18px; background: rgba(143, 124, 210, 0.1); color: #8f7cd2; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; }
+        .quantity { font-weight: 600; font-size: 18px; }
+        .remove-btn { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; background: rgba(255, 59, 48, 0.1); color: #ff3b30; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .loot-reward { background: rgba(178, 226, 79, 0.1); border-radius: 15px; padding: 15px; margin: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .reward-info { display: flex; align-items: center; }
+        .reward-icon { font-size: 24px; margin-right: 10px; }
+        .reward-text { color: #8fa83d; font-weight: 600; }
+        .reward-amount { color: #8fa83d; font-weight: 700; font-size: 18px; }
+        .order-summary { background: white; border-radius: 20px; margin: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .summary-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .summary-label { color: #666; }
+        .summary-value { font-weight: 600; }
+        .summary-total { border-top: 2px solid #f0f0f0; padding-top: 15px; margin-top: 15px; font-size: 20px; font-weight: 700; }
+        .checkout-btn { background: linear-gradient(135deg, #b2e24f 0%, #8fa83d 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; font-weight: 700; font-size: 18px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">71%</div>
+    </div>
+
+    <div class="header">
+        <div class="header-left">
+            <div class="back-button">←</div>
+            <div class="header-title">Shopping Cart</div>
+        </div>
+        <div class="cart-count">3 items</div>
+    </div>
+
+    <div class="cart-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">👟</div>
+        <div class="item-details">
+            <h3 class="item-title">Nike Air Max 270</h3>
+            <p class="item-options">Size: US 9 • Color: Triple Black</p>
+            <div class="item-price">$150.00</div>
+            <div class="quantity-controls">
+                <div class="qty-btn">-</div>
+                <span class="quantity">1</span>
+                <div class="qty-btn">+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #4834d4, #686de0);">👕</div>
+        <div class="item-details">
+            <h3 class="item-title">Champion Hoodie</h3>
+            <p class="item-options">Size: M • Color: Navy Blue</p>
+            <div class="item-price">$65.00</div>
+            <div class="quantity-controls">
+                <div class="qty-btn">-</div>
+                <span class="quantity">2</span>
+                <div class="qty-btn">+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #00d2d3, #54a0ff);">🕶️</div>
+        <div class="item-details">
+            <h3 class="item-title">Ray-Ban Aviators</h3>
+            <p class="item-options">Style: Classic • Color: Gold</p>
+            <div class="item-price">$154.00</div>
+            <div class="quantity-controls">
+                <div class="qty-btn">-</div>
+                <span class="quantity">1</span>
+                <div class="qty-btn">+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loot-reward">
+        <div class="reward-info">
+            <span class="reward-icon">💰</span>
+            <span class="reward-text">You'll earn $LOOT with this order</span>
+        </div>
+        <span class="reward-amount">+18 $LOOT</span>
+    </div>
+
+    <div class="order-summary">
+        <h3 class="summary-title">Order Summary</h3>
+        <div class="summary-row">
+            <span class="summary-label">Subtotal</span>
+            <span class="summary-value">$434.00</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label">Shipping</span>
+            <span class="summary-value">Free</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label">Tax</span>
+            <span class="summary-value">$34.72</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label">$LOOT Discount</span>
+            <span class="summary-value" style="color: #b2e24f;">-$21.70</span>
+        </div>
+        <div class="summary-row summary-total">
+            <span class="summary-label">Total</span>
+            <span class="summary-value">$447.02</span>
+        </div>
+    </div>
+
+    <div class="checkout-btn">
+        Proceed to Checkout
+    </div>
+</body>
+</html> 

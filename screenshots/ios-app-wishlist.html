@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Wishlist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { width: 1259px; min-height: 2636px; background: #ffffff; font-family: 'Quicksand', sans-serif; color: #1a1a1a; overflow-y: auto; overflow-x: hidden; position: relative; margin: 50px auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border-radius: 44px; padding: 40px; box-sizing: border-box; }
+        .status-bar { height: 60px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; font-size: 19px; font-weight: 600; color: #1a1a1a; border-radius: 20px 20px 0 0; margin: -40px -40px 0 -40px; }
+        .header { padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 0 -40px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; }
+        .back-button { font-size: 24px; font-weight: bold; margin-right: 20px; }
+        .header-title { font-size: 24px; font-weight: 700; }
+        .share-button { color: #8f7cd2; font-weight: 600; }
+        .wishlist-stats { background: rgba(143, 124, 210, 0.1); border-radius: 20px; padding: 20px; margin: 20px; text-align: center; }
+        .stats-row { display: flex; justify-content: space-around; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 24px; font-weight: 700; color: #8f7cd2; }
+        .stat-label { color: #666; font-size: 14px; margin-top: 5px; }
+        .wishlist-item { background: white; border-radius: 20px; margin: 15px 20px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: flex; align-items: center; position: relative; }
+        .item-image { width: 100px; height: 100px; border-radius: 15px; margin-right: 20px; display: flex; align-items: center; justify-content: center; font-size: 50px; color: white; }
+        .item-details { flex: 1; }
+        .item-title { font-size: 18px; font-weight: 700; margin-bottom: 5px; }
+        .item-brand { color: #666; margin-bottom: 8px; }
+        .item-price { font-size: 20px; font-weight: 700; color: #b2e24f; margin-bottom: 10px; }
+        .item-status { font-size: 14px; }
+        .status-available { color: #34c759; }
+        .status-sale { color: #ff6b6b; font-weight: 600; }
+        .remove-btn { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; background: rgba(255, 59, 48, 0.1); color: #ff3b30; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .action-btn { padding: 10px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 14px; }
+        .add-to-cart { background: #b2e24f; color: white; }
+        .notify-btn { background: rgba(143, 124, 210, 0.1); color: #8f7cd2; }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">83%</div>
+    </div>
+
+    <div class="header">
+        <div class="header-left">
+            <div class="back-button">←</div>
+            <div class="header-title">My Wishlist</div>
+        </div>
+        <div class="share-button">Share</div>
+    </div>
+
+    <div class="wishlist-stats">
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Items</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$1,247</div>
+                <div class="stat-label">Total Value</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">3</div>
+                <div class="stat-label">On Sale</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wishlist-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">👟</div>
+        <div class="item-details">
+            <h3 class="item-title">Nike Air Jordan 1</h3>
+            <p class="item-brand">Nike</p>
+            <div class="item-price">$170.00</div>
+            <div class="item-status status-sale">🔥 30% OFF - Limited Time!</div>
+            <div class="action-buttons">
+                <div class="action-btn add-to-cart">Add to Cart</div>
+                <div class="action-btn notify-btn">Price Alert</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wishlist-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #4834d4, #686de0);">👕</div>
+        <div class="item-details">
+            <h3 class="item-title">Oversized Hoodie</h3>
+            <p class="item-brand">Stussy</p>
+            <div class="item-price">$120.00</div>
+            <div class="item-status status-available">✅ In Stock</div>
+            <div class="action-buttons">
+                <div class="action-btn add-to-cart">Add to Cart</div>
+                <div class="action-btn notify-btn">Notify Me</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wishlist-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #00d2d3, #54a0ff);">🕶️</div>
+        <div class="item-details">
+            <h3 class="item-title">Ray-Ban Aviators</h3>
+            <p class="item-brand">Ray-Ban</p>
+            <div class="item-price">$154.00</div>
+            <div class="item-status status-sale">🔥 25% OFF Today Only!</div>
+            <div class="action-buttons">
+                <div class="action-btn add-to-cart">Add to Cart</div>
+                <div class="action-btn notify-btn">Price Alert</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wishlist-item">
+        <div class="remove-btn">×</div>
+        <div class="item-image" style="background: linear-gradient(45deg, #ffa726, #ff7043);">👖</div>
+        <div class="item-details">
+            <h3 class="item-title">Vintage Mom Jeans</h3>
+            <p class="item-brand">Levi's</p>
+            <div class="item-price">$89.99</div>
+            <div class="item-status" style="color: #ff9500;">⏳ Low Stock - 2 left</div>
+            <div class="action-buttons">
+                <div class="action-btn add-to-cart">Add to Cart</div>
+                <div class="action-btn notify-btn">Notify Me</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

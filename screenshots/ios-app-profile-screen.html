@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LootAI iOS App - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1259px;
+            min-height: 2636px;
+            background: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            color: #1a1a1a;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            margin: 50px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-radius: 44px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* iOS Status Bar */
+        .status-bar {
+            height: 60px;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            font-size: 19px;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-radius: 20px 20px 0 0;
+            margin: -40px -40px 0 -40px;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0 -40px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #8f7cd2 0%, #6b5b94 100%);
+            border-radius: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Profile Sections */
+        .profile-section {
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .token-balance {
+            background: linear-gradient(135deg, #b2e24f 0%, #8fa83d 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .balance-amount {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .balance-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(143,124,210,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .activity-meta {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .activity-amount {
+            font-weight: 700;
+            color: #b2e24f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">
+            <div class="signal-bars">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+                <div class="bar bar-4"></div>
+            </div>
+            <div class="wifi-icon"></div>
+            <div class="battery"></div>
+        </div>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-avatar">👤</div>
+        <h1 class="profile-name">Alex Thompson</h1>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <div class="stat-value">127</div>
+                <div class="stat-label">Reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">43</div>
+                <div class="stat-label">Referrals</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">892</div>
+                <div class="stat-label">AI Chats</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Balance -->
+    <div class="profile-section">
+        <div class="token-balance">
+            <div class="balance-amount">12,458 $LOOT</div>
+            <div class="balance-label">Available Balance</div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="profile-section">
+        <h2 class="section-title">Recent Activity</h2>
+        <div class="activity-item">
+            <div class="activity-icon">💫</div>
+            <div class="activity-details">
+                <div class="activity-title">Review Reward</div>
+                <div class="activity-meta">Nike Air Max Review</div>
+            </div>
+            <div class="activity-amount">+50 $LOOT</div>
+        </div>
+        <div class="activity-item">
+            <div class="activity-icon">👥</div>
+            <div class="activity-details">
+                <div class="activity-title">Referral Bonus</div>
+                <div class="activity-meta">Sarah joined LootAI</div>
+            </div>
+            <div class="activity-amount">+100 $LOOT</div>
+        </div>
+        <div class="activity-item">
+            <div class="activity-icon">🛍️</div>
+            <div class="activity-details">
+                <div class="activity-title">Purchase Cashback</div>
+                <div class="activity-meta">Adidas Store</div>
+            </div>
+            <div class="activity-amount">+75 $LOOT</div>
+        </div>
+    </div>
+</body>
+</html> 
