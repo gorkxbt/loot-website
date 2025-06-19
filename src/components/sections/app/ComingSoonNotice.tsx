@@ -7,7 +7,7 @@ export default function ComingSoonNotice() {
         <span className="text-primary-purple">Coming Soon</span>
       </h3>
       <p className="text-light/80 mb-6">
-        We're putting the finishing touches on our <span className="text-primary-purple">mobile app</span>. Join our waitlist to be notified when it's ready for download!
+        We&apos;re putting the finishing touches on our <span className="text-primary-purple">mobile app</span>. Join our waitlist to be notified when it&apos;s ready for download!
       </p>
       <Button variant="primary">
         Join the Waitlist
